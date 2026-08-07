@@ -12,54 +12,20 @@
   "summary": "AI and Data Engineer with experience developing enterprise AI chatbots, RAG architectures, and semantic search using different technologies. Passionate about building scalable AI solutions, solving complex problems, and continuously learning in fast-paced and international environments.",
   "sections": [
     {
-      "kind": "tag-grid",
-      "heading": "Technical Skills",
-      "items": [
-        "RAG",
-        "GraphRAG",
-        "LangChain",
-        "LlamaIndex",
-        "LLM Interaction",
-        "ETL Pipelines",
-        "Embeddings",
-        "Vector Databases",
-        "SQL",
-        "Data Modeling"
-      ]
-    },
-    {
-      "kind": "inline-list",
-      "heading": "Programming & Tools",
-      "items": [
-        "Python / JAVA",
-        "C/C++",
-        "REST APIs",
-        "API Development",
-        "Cloud AWS",
-        "Git",
-        "Docker"
-      ]
-    },
-    {
-      "kind": "inline-list",
-      "heading": "Personal Skills",
-      "tightTop": true,
-      "items": [
-        "Problem-solving",
-        "Communication",
-        "Team-work",
-        "Scrum",
-        "Analytical thinking",
-        "Adaptability"
-      ]
-    },
-    {
-      "kind": "bullets",
-      "heading": "Extra-curricular",
+      "kind": "labeled",
+      "heading": "Skills",
       "items": [
         {
-          "lead": "Barcelona Supercomputing Center -",
-          "text": "Mad for supercomputing is a course for baccalaureate students interested in STEM, organized by the Barcelona Supercomputing Center and Fundació Catalunya La Pedrera."
+          "label": "AI & Data:",
+          "text": "RAG, GraphRAG, agents and tool calling, LLM evaluation, embeddings, vector databases (pgvector), LangChain, LlamaIndex, LangGraph, ETL pipelines, SQL, data modeling"
+        },
+        {
+          "label": "Programming & Tools:",
+          "text": "Python, Java, C/C++, TypeScript, Next.js, REST API development, PostgreSQL, Supabase, AWS (Bedrock, Lambda, S3, Cognito), Docker, Git"
+        },
+        {
+          "label": "Personal Skills:",
+          "text": "Problem-solving, communication, team-work, analytical thinking, adaptability"
         }
       ]
     },
@@ -68,16 +34,30 @@
       "heading": "Professional Experience",
       "entries": [
         {
-          "title": "Universitat de Vic – Universitat Central de Catalunya",
+          "title": "Freelance AI Engineer",
+          "period": "2025 - Present",
+          "bullets": [
+            {
+              "lead": "Junsu · AI compliance platform · junsu.es",
+              "text": "— pgvector retrieval over compliance evidence with page and character-offset provenance, and a batched LLM pipeline mapping controls to risks with human confirmation before scoring. On AWS (Bedrock, Lambda, S3, Cognito) with per-tenant Postgres row-level security; live with its first enterprise customer."
+            },
+            {
+              "lead": "TuDiaDeBlanco · All-in-one AI wedding platform · tudiadeblanco.com",
+              "text": "— full platform on Next.js, Supabase and Stripe (guests, seating, budgets, RSVP, public wedding pages), plus a visibility-scoped RAG chatbot and an agent that tool-calls live platform data."
+            }
+          ],
+          "note": "Check blancabarrufet.me for more information."
+        },
+        {
+          "title": "Digital Health Data Analyst - uVic",
           "period": "June 2026 - Present",
           "bullets": [
-            "Digital Health Data Analyst at the Càtedra TIC Salut Social (UVic-UCC), working on a digital health indicators platform.",
-            "Leading the platform's web architecture with a focus on scalable data integration and user-oriented functionality.",
+            "Digital Health Data Analyst, leading the web architecture of a digital health indicators platform with scalable data integration.",
             "Conducting data validation and analytical workflows, and designing AI agents to automate healthcare data analysis."
           ]
         },
         {
-          "title": "Connecthink Innovation, S.L.",
+          "title": "AI and Data Engineer - Connecthink Innovation, S.L.",
           "period": "November 2025 - Present",
           "bullets": [
             "Development of enterprise AI chatbots for querying and managing large-scale datasets.",
@@ -86,9 +66,9 @@
           ]
         },
         {
-          "title": "La Salle - URL",
+          "title": "Teacher assistant - URL - La Salle",
           "period": "September 2024 - January 2026",
-          "text": "University collaborator as a mathematics, algebra, calculus and Mathematical Fundamentals teacher assistant in the Artificial Intelligence degree"
+          "text": "University collaborator as a maths, algebra, calculus and Maths Fundamentals teacher assistant in the AI degree"
         }
       ]
     },
@@ -118,15 +98,11 @@
       "items": [
         {
           "label": "Languages:",
-          "text": "Spanish-Catalan (native), English (proficiency), German (beginner)"
+          "text": "Spanish & Catalan (native), English (C2), German (beginner)"
         },
         {
-          "label": "Certifications:",
-          "text": "CCNA, C2 Level English"
-        },
-        {
-          "label": "Awards/Activities:",
-          "text": "Scholarship for women in engineering, Winner of the First Lego League"
+          "label": "Certifications & Awards:",
+          "text": "CCNA, C2 English; Scholarship for Women in Engineering, First Lego League Winner"
         }
       ]
     }

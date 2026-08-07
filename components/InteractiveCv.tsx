@@ -34,9 +34,14 @@ const InteractiveCv = () => {
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
   const [expandedExperience, setExpandedExperience] = useState<string[]>([]);
   const [expandedProjects, setExpandedProjects] = useState<string[]>([]);
+  const [expandedEducation, setExpandedEducation] = useState<string[]>([]);
 
   const toggleExperience = (id: string) => {
     setExpandedExperience((prev) => (prev.includes(id) ? prev.filter((expId) => expId !== id) : [...prev, id]));
+  };
+
+  const toggleEducation = (id: string) => {
+    setExpandedEducation((prev) => (prev.includes(id) ? prev.filter((eduId) => eduId !== id) : [...prev, id]));
   };
 
   const toggleProject = (id: string) => {
@@ -214,23 +219,48 @@ const InteractiveCv = () => {
       )}
 
       <div className="grid gap-7 lg:grid-cols-[1fr_0.78fr]">
-        <SectionFrame code="05.edu" title="Education">
+        <SectionFrame code="05.edu" title="Education" meta={`n = ${cvData.education.length}`}>
           <div className="space-y-3">
-            {cvData.education.map((education) => (
-              <article key={education.id} className="module-muted p-4 print-friendly">
-                <div className="grid gap-3 md:grid-cols-[96px_1fr]">
-                  <div className="text-[10px] leading-relaxed text-[var(--ink-muted)]">
-                    <p>{education.start}</p>
-                    <p>{education.end}</p>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-semibold text-[var(--ink)]">{education.program}</h3>
-                    <p className="mt-1 text-xs text-[var(--ink-muted)]">{education.school}</p>
-                    <p className="mt-3 text-xs leading-relaxed text-[var(--ink-muted)]">{education.description}</p>
-                  </div>
-                </div>
-              </article>
-            ))}
+            {cvData.education.map((education) => {
+              const isExpanded = expandedEducation.includes(education.id);
+
+              return (
+                <article key={education.id} className="module-muted print-friendly">
+                  <button
+                    type="button"
+                    onClick={() => toggleEducation(education.id)}
+                    className="grid w-full gap-4 p-4 text-left md:grid-cols-[96px_1fr_auto]"
+                    aria-expanded={isExpanded}
+                  >
+                    <div className="text-[10px] leading-relaxed text-[var(--ink-muted)]">
+                      <p>{education.start}</p>
+                      <p>{education.end}</p>
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-[var(--ink)]">{education.program}</h3>
+                      <p className="mt-1 text-xs text-[var(--ink-muted)]">{education.school}</p>
+                    </div>
+                    <span className="self-start text-[10px] uppercase text-[var(--accent)]">{isExpanded ? "collapse" : "details"}</span>
+                  </button>
+
+                  {isExpanded && (
+                    <div className="animate-fade-in border-t border-dashed px-4 pb-4 pt-3 md:ml-28">
+                      <p className="text-xs leading-relaxed text-[var(--ink-muted)]">{education.description}</p>
+                      {education.highlights.length > 0 && (
+                        <ul className="mt-3 space-y-2 text-xs leading-relaxed text-[var(--ink-muted)]">
+                          {education.highlights.map((highlight) => (
+                            <li key={highlight} className="flex gap-2">
+                              <span className="text-[var(--accent)]">&gt;</span>
+                              <span>{highlight}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  )}
+                </article>
+              );
+            })}
           </div>
         </SectionFrame>
 

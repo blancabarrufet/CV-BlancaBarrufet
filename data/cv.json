@@ -107,16 +107,42 @@
   ],
   "education": [
     {
+      "id": "edu-3",
+      "school": "Lewis University",
+      "program": "Master's Degree in Data Science",
+      "start": "August 2026",
+      "end": "Present",
+      "description": "Graduate program in Data Science, extending the engineering background towards machine learning, statistical modelling and large-scale data analysis.",
+      "highlights": [
+        "Machine learning and statistical modelling",
+        "Large-scale data analysis and visualization",
+        "Applied research projects"
+      ]
+    },
+    {
       "id": "edu-1",
       "school": "University of La Salle - URL",
-      "program": "Computer Engineering and Business",
+      "program": "International Computer Engineering",
       "start": "September 2022",
       "end": "Present",
-      "description": "Strong academic focus combining software engineering, data, and business strategy. High workload and rigorous program requiring strong discipline, adaptability, and continuous learning.",
+      "description": "Engineering degree taught in English, covering software engineering, systems and data. Studied as a double degree alongside Business and Management of Technology.",
       "highlights": [
         "Software engineering fundamentals",
         "Data structures and algorithms",
-        "Business strategy and management"
+        "Databases, data modelling and AI"
+      ]
+    },
+    {
+      "id": "edu-2",
+      "school": "University of La Salle - URL",
+      "program": "Business and Management of Technology",
+      "start": "September 2022",
+      "end": "Present",
+      "description": "Business degree focused on managing technology-driven organizations, taken in parallel with International Computer Engineering. High workload requiring strong discipline, adaptability and continuous learning.",
+      "highlights": [
+        "Business strategy and management",
+        "Finance, operations and project management",
+        "Innovation and technology-driven business models"
       ]
     }
   ],
@@ -188,33 +214,34 @@
   ],
   "projects": [
     {
-      "id": "proj-1",
-      "name": "Tu Día de Blanco — Hosted Digital Wedding Platform",
-      "type": "Personal Project",
-      "start": "2025",
-      "end": "2026",
-      "bullets": [
-        "Built a multi-tenant SaaS platform that lets couples and wedding planners design public invitation websites and run a private planning workspace — guests, seating, budget, and an AI concierge — for each wedding.",
-        "Designed a wedding-centric domain model with role-based Memberships (Owner / Editor / Viewer) and module-level permissions, supporting both a B2C couple channel (self-serve tiers) and a B2B planner channel (multi-wedding portfolios with ownership transfer).",
-        "Engineered the public Invitation Website as a fixed catalog of toggleable Sections with interchangeable Templates and Palettes, plus invite-code guest sessions gating RSVP responses and a knowledge-base AI Concierge for guest questions.",
-        "Implemented the full stack on Next.js 16 and React 19 with Supabase (Postgres, Auth, RLS) for secure multi-tenant data, Stripe for tiered subscriptions, and Vercel for deployment — backed by ADRs and a documented domain language for long-term maintainability."
-      ],
-      "tags": ["React-Next.js", "Supabase", "Postgres", "Stripe", "TypeScript", "Tailwind", "Multi-tenant SaaS"],
-      "url": "https://www.tudiadeblanco.com/"
-    },
-    {
       "id": "proj-2",
-      "name": "Junsu – AI Compliance Risk Evaluation Platform",
-      "type": "Personal Project",
+      "name": "Junsu — AI Compliance Platform",
+      "type": "Freelance AI Engineering",
       "start": "2026",
       "end": "2026",
       "bullets": [
-        "Built an AI-powered compliance evaluation platform that helps identify, classify, and measure risks linked to business activities using structured LLM reasoning and calculated risk scoring.",
-        "Designed a compliance analysis application that maps organizational activities to relevant risks using large language models, combining AI judgment with rule-based calculations to produce structured, traceable risk assessments.",
-        "Implemented the project on AWS with a compliance-focused architecture, evaluating services such as Bedrock for secure model access and AWS-native deployment to handle sensitive evaluation data within centralized infrastructure.",
-        "Delivered automated risk matching, structured AI responses, scalable backend logic, and a clearer workflow for evaluating compliance exposure across different activities."
+        "AI compliance platform that maps business activities to risks with structured LLM reasoning and calculated scoring. Live with its first enterprise customer, covering ISO 27001, UNE 19601, ESG and B Corp.",
+        "Built the pgvector retrieval layer over customer compliance evidence, with page and character-offset provenance so every AI recommendation cites a source span an auditor can verify.",
+        "Designed the LLM assessment pipeline mapping controls to risks: one batched call per activity keeps related judgments consistent, the rubric is cached as a prompt prefix to cut cost, and output is excluded from scoring until a human confirms it.",
+        "Shipped on AWS (Bedrock, S3, Cognito, Lambda) with per-tenant Postgres row-level security and a token-level cost ledger reconciled against the AWS bill."
       ],
-      "tags": ["AWS", "Bedrock", "LLM Interaction", "React-Next.js", "Compliance", "Risk Analysis", "Data Analysis"]
+      "tags": ["AWS", "Bedrock", "pgvector", "RAG", "LLM Interaction", "React-Next.js", "Postgres RLS", "Compliance", "Risk Analysis"],
+      "url": "https://www.junsu.es/"
+    },
+    {
+      "id": "proj-1",
+      "name": "TuDiaDeBlanco — All-in-one AI Wedding Platform",
+      "type": "Freelance AI Engineering",
+      "start": "2025",
+      "end": "2026",
+      "bullets": [
+        "Built the full platform on Next.js, Supabase and Stripe: guest management, seating plans, budgets, invitations, RSVP and public wedding pages, for couples and for planners running multi-wedding portfolios.",
+        "Shipped a RAG chatbot over the couple's uploaded documents, with visibility scoping in the retrieval layer separating the guest-facing concierge from the couple's private assistant.",
+        "Extended it into an agent that tool-calls live platform data (guests, seating, budget), with a bounded tool-round loop and a similarity-threshold FAQ path that answers common questions without invoking the model.",
+        "Multi-tenant by design: role-based memberships (owner / editor / viewer) with module-level permissions, Supabase Postgres row-level security, and Stripe tiers for the self-serve couple channel."
+      ],
+      "tags": ["React-Next.js", "Supabase", "Postgres", "RAG", "AI Agents", "Stripe", "TypeScript", "Multi-tenant SaaS"],
+      "url": "https://www.tudiadeblanco.com/"
     }
   ]
 }

@@ -21,8 +21,10 @@ type EntryItem = {
   title: string;
   period?: string;
   subtitle?: string;
-  bullets?: string[];
+  /** Plain string, or `{ lead, text }` to bold the opening phrase. */
+  bullets?: (string | BulletItem)[];
   text?: string;
+  note?: string;
 };
 
 type Section =
@@ -77,7 +79,7 @@ function TagGridSection({ section }: { section: Extract<Section, { kind: "tag-gr
   return (
     <>
       <SectionHeading section={section} />
-      <ul className={`grid ${colsClass} gap-x-3 gap-y-1 text-[14px] text-neutral-900`}>
+      <ul className={`grid ${colsClass} gap-x-3 gap-y-1 text-[12.5px] text-neutral-900`}>
         {section.items.map((item) => (
           <li key={item} className={`${bullet} whitespace-nowrap`}>
             {item}
@@ -93,7 +95,7 @@ function InlineListSection({ section }: { section: Extract<Section, { kind: "inl
     <>
       <SectionHeading section={section} />
       <p
-        className="text-[14px] text-neutral-900"
+        className="text-[12.5px] text-neutral-900"
         style={{ textAlign: "justify", textAlignLast: "justify" }}
       >
         {section.items.join(" • ")}
@@ -106,7 +108,7 @@ function BulletsSection({ section }: { section: Extract<Section, { kind: "bullet
   return (
     <>
       <SectionHeading section={section} />
-      <ul className="space-y-0.5 text-[14px] leading-relaxed text-neutral-900">
+      <ul className="space-y-0.5 text-[12.5px] leading-relaxed text-neutral-900">
         {section.items.map((item, i) => (
           <li key={i} className={bullet}>
             {item.lead ? <span className="font-bold">{item.lead} </span> : null}
@@ -122,7 +124,7 @@ function LabeledSection({ section }: { section: Extract<Section, { kind: "labele
   return (
     <>
       <SectionHeading section={section} />
-      <ul className="space-y-0.5 text-[14px] leading-relaxed text-neutral-900">
+      <ul className="space-y-0.5 text-[12.5px] leading-relaxed text-neutral-900">
         {section.items.map((item, i) => (
           <li key={i} className={bullet}>
             <span className="font-bold">{item.label}</span> {item.text}
@@ -159,7 +161,14 @@ function EntriesSection({ section }: { section: Extract<Section, { kind: "entrie
               <ul className="mt-0.5 space-y-0.5 pl-4 text-[12.5px] leading-relaxed text-neutral-900">
                 {entry.bullets.map((b, j) => (
                   <li key={j} className={bullet}>
-                    {b}
+                    {typeof b === "string" ? (
+                      b
+                    ) : (
+                      <>
+                        {b.lead ? <span className="font-bold">{b.lead} </span> : null}
+                        {b.text}
+                      </>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -168,6 +177,9 @@ function EntriesSection({ section }: { section: Extract<Section, { kind: "entrie
               <p className="mt-0.5 pl-4 text-[12.5px] leading-relaxed text-neutral-900">
                 {entry.text}
               </p>
+            ) : null}
+            {entry.note ? (
+              <p className="mt-0.5 pl-4 text-[12px] italic text-neutral-700">{entry.note}</p>
             ) : null}
           </div>
         ))}
@@ -278,6 +290,8 @@ export default function Cv2Page() {
           editing ? "cv-editing" : ""
         }`}
       >
+        {/* Wrapper exists so print can scale the content to 95% (see @media print below) */}
+        <div className="cv-scale">
         {/* Header (div, not <header>, so it isn't hidden by the global print rule) */}
         <div className="text-center">
           <h1 className="text-[30px] font-bold uppercase leading-tight tracking-wide text-black">
@@ -301,6 +315,7 @@ export default function Cv2Page() {
 
         {/* Sections — rendered in data order */}
         {cv.sections.map((section, index) => renderSection(section, index))}
+        </div>
       </article>
 
       {/* Page-scoped styles: clean sans-serif, edit affordance, and headerless A4 print */}
@@ -344,6 +359,11 @@ export default function Cv2Page() {
             margin: 0;
             padding: 12mm 16mm !important;
             box-shadow: none !important;
+          }
+          /* PDF export renders the content at 95%; zoom reflows, so the sheet
+             height shrinks with it instead of overflowing onto a second page. */
+          .cv-scale {
+            zoom: 0.95;
           }
         }
       `}</style>

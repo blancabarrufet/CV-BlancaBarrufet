@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import cvPrintData from "@/data/cv-print.json";
 
 /**
- * The /cv page is a content-driven, one-page printable résumé.
+ * The /cv page is a content-driven, one-page printable résumé. It shares the exact
+ * layout/print logic of /cv2 but reads from `data/cv-print.json`.
  *
  * IMPORTANT: To change the CV, edit `data/cv-print.json` (see `data/cv-print.schema.md`).
  * This file only owns layout, styling, and the A4 / PDF print logic — keep content out of it.
  */
 
-// ---- Content model (mirrors data/cv-print.json) ----------------------------
+// ---- Content model (mirrors data/cv-print.json) --------------------------
 
 type BulletItem = { lead?: string; text: string };
 type LabeledItem = { label: string; text: string };
@@ -19,16 +20,26 @@ type EntryItem = {
   title: string;
   period?: string;
   subtitle?: string;
-  bullets?: string[];
+  /** Plain string, or `{ lead, text }` to bold the opening phrase. */
+  bullets?: (string | BulletItem)[];
   text?: string;
+  note?: string;
 };
 
 type Section =
-  | { kind: "tag-grid"; heading: string; tightTop?: boolean; items: string[] }
+  | { kind: "tag-grid"; heading: string; tightTop?: boolean; columns?: number; items: string[] }
   | { kind: "inline-list"; heading: string; tightTop?: boolean; items: string[] }
   | { kind: "bullets"; heading: string; tightTop?: boolean; items: BulletItem[] }
   | { kind: "labeled"; heading: string; tightTop?: boolean; items: LabeledItem[] }
-  | { kind: "entries"; heading: string; tightTop?: boolean; entries: EntryItem[] };
+  | {
+      kind: "entries";
+      heading: string;
+      tightTop?: boolean;
+      columns?: number;
+      note?: string;
+      entries: EntryItem[];
+    }
+  | { kind: "group"; tightTop?: boolean; columns?: number; sections: Section[] };
 
 type CvPrint = {
   profile: { name: string; headline: string; contacts: string[] };
@@ -51,17 +62,25 @@ function headingClass(tightTop?: boolean) {
 
 // ---- Section renderers ------------------------------------------------------
 
-function SectionHeading({ section }: { section: Section }) {
+function SectionHeading({ section }: { section: Exclude<Section, { kind: "group" }> }) {
   return <h2 className={headingClass(section.tightTop)}>{section.heading}</h2>;
 }
 
 function TagGridSection({ section }: { section: Extract<Section, { kind: "tag-grid" }> }) {
+  const colsClass =
+    section.columns === 1
+      ? "grid-cols-1"
+      : section.columns === 2
+        ? "grid-cols-2"
+        : section.columns === 3
+          ? "grid-cols-3"
+          : "grid-cols-2 sm:grid-cols-5";
   return (
     <>
       <SectionHeading section={section} />
-      <ul className="grid grid-cols-2 gap-x-6 gap-y-1 text-[12.5px] text-neutral-900 sm:grid-cols-5">
+      <ul className={`grid ${colsClass} gap-x-3 gap-y-1 text-[12.5px] text-neutral-900`}>
         {section.items.map((item) => (
-          <li key={item} className={bullet}>
+          <li key={item} className={`${bullet} whitespace-nowrap`}>
             {item}
           </li>
         ))}
@@ -116,10 +135,14 @@ function LabeledSection({ section }: { section: Extract<Section, { kind: "labele
 }
 
 function EntriesSection({ section }: { section: Extract<Section, { kind: "entries" }> }) {
+  const layoutClass =
+    section.columns === 2
+      ? "grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2"
+      : "space-y-2";
   return (
     <>
       <SectionHeading section={section} />
-      <div className="space-y-2">
+      <div className={layoutClass}>
         {section.entries.map((entry, i) => (
           <div key={i}>
             <div className="flex items-baseline justify-between gap-4">
@@ -137,7 +160,14 @@ function EntriesSection({ section }: { section: Extract<Section, { kind: "entrie
               <ul className="mt-0.5 space-y-0.5 pl-4 text-[12.5px] leading-relaxed text-neutral-900">
                 {entry.bullets.map((b, j) => (
                   <li key={j} className={bullet}>
-                    {b}
+                    {typeof b === "string" ? (
+                      b
+                    ) : (
+                      <>
+                        {b.lead ? <span className="font-bold">{b.lead} </span> : null}
+                        {b.text}
+                      </>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -147,10 +177,34 @@ function EntriesSection({ section }: { section: Extract<Section, { kind: "entrie
                 {entry.text}
               </p>
             ) : null}
+            {entry.note ? (
+              <p className="mt-0.5 pl-4 text-[12px] italic text-neutral-700">{entry.note}</p>
+            ) : null}
           </div>
         ))}
       </div>
+      {section.note ? (
+        <p className="mt-0.5 text-[12px] italic text-neutral-700">{section.note}</p>
+      ) : null}
     </>
+  );
+}
+
+function GroupSection({ section }: { section: Extract<Section, { kind: "group" }> }) {
+  const colsClass =
+    section.columns === 2
+      ? "sm:grid-cols-2"
+      : section.columns === 4
+        ? "sm:grid-cols-4"
+        : "sm:grid-cols-3";
+  return (
+    <div className={`mt-4 grid grid-cols-1 gap-x-6 gap-y-3 ${colsClass}`}>
+      {section.sections.map((child, i) => (
+        <div key={i} className="[&_h2]:!mt-0">
+          {renderSection({ ...child, tightTop: true } as Section, i)}
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -166,6 +220,8 @@ function renderSection(section: Section, index: number) {
       return <LabeledSection key={index} section={section} />;
     case "entries":
       return <EntriesSection key={index} section={section} />;
+    case "group":
+      return <GroupSection key={index} section={section} />;
     default:
       return null;
   }
@@ -233,6 +289,8 @@ export default function CvPage() {
           editing ? "cv-editing" : ""
         }`}
       >
+        {/* Wrapper exists so print can scale the content to 95% (see @media print below) */}
+        <div className="cv-scale">
         {/* Header (div, not <header>, so it isn't hidden by the global print rule) */}
         <div className="text-center">
           <h1 className="text-[30px] font-bold uppercase leading-tight tracking-wide text-black">
@@ -242,7 +300,7 @@ export default function CvPage() {
             {cv.profile.headline}
           </p>
           <p className="mt-2.5 text-[12.5px] text-neutral-800">
-            {cv.profile.contacts.join(" |  ")}
+            {cv.profile.contacts.join(" |  ")}
           </p>
           <hr className="mt-2.5 border-t border-black/80" />
         </div>
@@ -256,6 +314,7 @@ export default function CvPage() {
 
         {/* Sections — rendered in data order */}
         {cv.sections.map((section, index) => renderSection(section, index))}
+        </div>
       </article>
 
       {/* Page-scoped styles: clean sans-serif, edit affordance, and headerless A4 print */}
@@ -299,6 +358,11 @@ export default function CvPage() {
             margin: 0;
             padding: 12mm 16mm !important;
             box-shadow: none !important;
+          }
+          /* PDF export renders the content at 95%; zoom reflows, so the sheet
+             height shrinks with it instead of overflowing onto a second page. */
+          .cv-scale {
+            zoom: 0.95;
           }
         }
       `}</style>
