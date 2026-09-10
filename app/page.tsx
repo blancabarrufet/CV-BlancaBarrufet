@@ -44,8 +44,8 @@ export default function Home() {
                   Blanca M Barrufet
                 </h1>
                 <div className="mt-3 flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.1em]">
-                  <span className="tag-active border px-2 py-1">AI and Data Engineer</span>
-                  <span className="text-[var(--ink-muted)]">/ Barcelona</span>
+                  <span className="tag-active border px-2 py-1">Associate AI Engineer</span>
+                  <span className="text-[var(--ink-muted)]">/ Chicago</span>
                 </div>
                 <p className="mt-5 max-w-[66ch] text-sm leading-relaxed text-[var(--ink-muted)]">
                   {cvData.summary[1]} {cvData.summary[2]}
@@ -70,21 +70,18 @@ export default function Home() {
               <MetaRow label="name" value={cvData.profile.name} />
               <MetaRow label="location" value={cvData.profile.location} />
               <MetaRow label="email" value={cvData.profile.email} href={`mailto:${cvData.profile.email}`} />
-              <MetaRow label="web" value="blancabarrufet.me" />
               <MetaRow
                 label="linkedin"
                 value="blanca-maría-barrufet"
                 href="https://www.linkedin.com/in/blanca-maría-barrufet-b72319265"
               />
-              <MetaRow label="status" value="open - advisory - roles" />
-              <MetaRow label="ts" value="2026-05-23T14:00:00Z" />
-              <div className="module-muted mt-4 p-3 text-[11px] leading-relaxed">
+              <div className="module-muted mt-8 p-3 text-[11px] leading-relaxed">
                 <p>
                   <span className="text-[var(--accent)]">~/blanca</span> $ cat about.md
                 </p>
-                <p># builds retrieval systems</p>
-                <p># currently @ connecthink</p>
-                <p># colaborating @ uVic</p>
+                <p># currently @ SPEJ LLC</p>
+                <p># Associate AI Developer</p>
+                <p># MS Data Science @ Lewis University</p>
                 <p>
                   <span className="text-[var(--accent)]">~/blanca</span> $
                 </p>

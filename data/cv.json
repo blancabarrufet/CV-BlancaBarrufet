@@ -1,15 +1,15 @@
 {
   "profile": {
     "name": "Blanca M Barrufet Garbayo",
-    "headline": "Computer Engineering and Business Student",
-    "location": "Barcelona, Spain",
+    "headline": "Associate AI Engineer",
+    "location": "Chicago, USA",
     "email": "blancamariabarrufet@gmail.com",
     "website": "",
     "linkedin": "",
     "github": ""
   },
   "summary": [
-    "Conscientious and enthusiastic student dedicated to every project with a passion for AI and software engineering",
+    "Associate AI Engineer currently at SPEJ LLC, building and testing the automations, integrations, and agent workflows that ship in client engagements",
     "Strong background combining software engineering, data, and business strategy with hands-on experience in AI and Data",
     "Excellent team player with empathy and strong communication skills, committed to continuous learning and growth"
   ],
@@ -64,11 +64,24 @@
   },
   "experience": [
     {
+      "id": "exp-3",
+      "company": "SPEJ LLC",
+      "title": "Associate AI Developer",
+      "start": "September 2026",
+      "end": "Present",
+      "bullets": [
+        "Builds end-to-end systems that make AI work in practice, including interfaces, MCPs, APIs, model integrations, RAG pipelines, and the data flows that hold them together",
+        "Builds and tests the automations, integrations, and agent workflows that ship in client engagements, working alongside solution architecture on implementation and quality review",
+        "Applies a background in computer science, data science, research, and secure AI and data solutions for organizations that require strong governance"
+      ],
+      "tags": ["AI Agents", "MCPs", "APIs", "RAG", "Model Integration", "Data Flows", "Automations", "Governance"]
+    },
+    {
       "id": "exp-0",
       "company": "Universitat de Vic – Universitat Central de Catalunya",
       "title": "Digital Health Data Analyst - Catedra TIC Salut",
       "start": "June 2026",
-      "end": "Present",
+      "end": "August 2026",
       "bullets": [
         "Part-time collaboration within the Càtedra TIC Salut Social (UVic-UCC) on a digital health indicators platform",
         "Leading the development of the platform's web architecture, with a focus on scalable data integration and user-oriented functionality",
@@ -83,7 +96,7 @@
       "company": "Connecthink Innovation, S.L.",
       "title": "AI and Data Engineer",
       "start": "November 2025",
-      "end": "Present",
+      "end": "August 2026",
       "bullets": [
         "Development of enterprise AI chatbots for querying and managing large-scale datasets",
         "Implementation of RAG architectures using LlamaIndex, pgvector, and LangGraph",
@@ -109,7 +122,7 @@
     {
       "id": "edu-3",
       "school": "Lewis University",
-      "program": "Master's Degree in Data Science",
+      "program": "MS Data Science",
       "start": "August 2026",
       "end": "Present",
       "description": "Graduate program in Data Science, extending the engineering background towards machine learning, statistical modelling and large-scale data analysis.",
