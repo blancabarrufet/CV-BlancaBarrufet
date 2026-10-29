@@ -43,27 +43,18 @@
           ]
         },
         {
-          "title": "Freelance AI Engineer",
-          "period": "2025 - August 2026",
+          "title": "Freelance AI Engineer - Individual projects",
           "bullets": [
             {
-              "lead": "Junsu · AI compliance platform · junsu.es",
-              "text": "— pgvector retrieval over compliance evidence with page and character-offset provenance, and a batched LLM pipeline mapping controls to risks with human confirmation before scoring. On AWS (Bedrock, Lambda, S3, Cognito) with per-tenant Postgres row-level security; live with its first enterprise customer."
+              "lead": "Junsu · AI compliance platform · junsu.es:",
+              "text": "pgvector retrieval over compliance evidence with page and character-offset provenance, and a batched LLM pipeline mapping controls to risks with human confirmation before scoring. On AWS (Bedrock, Lambda, S3, Cognito) with per-tenant Postgres row-level security; live with its first enterprise customer."
             },
             {
-              "lead": "TuDiaDeBlanco · All-in-one AI wedding platform · tudiadeblanco.com",
-              "text": "— full platform on Next.js, Supabase and Stripe (guests, seating, budgets, RSVP, public wedding pages), plus a visibility-scoped RAG chatbot and an agent that tool-calls live platform data."
+              "lead": "Digital Health Data Analyst - uVic · June 2026 - August 2026:",
+              "text": "Leading web architecture and scalable data integration for digital health indicators, with data validation, analytical workflows, and AI agents for healthcare analysis."
             }
           ],
           "note": "Check blancabarrufet.me for more information."
-        },
-        {
-          "title": "Digital Health Data Analyst - uVic",
-          "period": "June 2026 - August 2026",
-          "bullets": [
-            "Digital Health Data Analyst, leading the web architecture of a digital health indicators platform with scalable data integration.",
-            "Conducting data validation and analytical workflows, and designing AI agents to automate healthcare data analysis."
-          ]
         },
         {
           "title": "AI and Data Engineer - Connecthink Innovation, S.L.",
@@ -87,7 +78,7 @@
       "entries": [
         {
           "title": "Computer Engineering and Business and Management student",
-          "period": "September 2022 - Present",
+          "period": "September 2022 - June 2027",
           "subtitle": "University of La Salle - URL",
           "bullets": [
             "Strong academic focus combining software engineering, data, and business strategy.",
@@ -95,8 +86,8 @@
           ]
         },
         {
-          "title": "MS Data Science",
-          "period": "Start in Aug 2026",
+          "title": "Data Science, M.S",
+          "period": "August 2026 - June 2027",
           "subtitle": "Lewis University"
         }
       ]
