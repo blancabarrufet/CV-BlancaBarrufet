@@ -240,6 +240,21 @@
       ],
       "tags": ["AWS", "Bedrock", "pgvector", "RAG", "LLM Interaction", "React-Next.js", "Postgres RLS", "Compliance", "Risk Analysis"],
       "url": "https://www.junsu.es/"
+    },
+    {
+      "id": "proj-1",
+      "name": "TuDiaDeBlanco - All-in-one AI Wedding Platform",
+      "type": "Freelance AI Engineering",
+      "start": "2025",
+      "end": "2026",
+      "bullets": [
+        "Built the full platform on Next.js, Supabase and Stripe: guest management, seating plans, budgets, invitations, RSVP and public wedding pages, for couples and for planners running multi-wedding portfolios.",
+        "Shipped a RAG chatbot over the couple's uploaded documents, with visibility scoping in the retrieval layer separating the guest-facing concierge from the couple's private assistant.",
+        "Extended it into an agent that tool-calls live platform data (guests, seating, budget), with a bounded tool-round loop and a similarity-threshold FAQ path that answers common questions without invoking the model.",
+        "Multi-tenant by design: role-based memberships (owner / editor / viewer) with module-level permissions, Supabase Postgres row-level security, and Stripe tiers for the self-serve couple channel."
+      ],
+      "tags": ["React-Next.js", "Supabase", "Postgres", "RAG", "AI Agents", "Stripe", "TypeScript", "Multi-tenant SaaS"],
+      "url": "https://www.tudiadeblanco.com/"
     }
   ]
 }
