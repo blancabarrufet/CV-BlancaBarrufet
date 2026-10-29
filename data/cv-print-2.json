@@ -49,10 +49,6 @@
             {
               "lead": "Junsu · AI compliance platform · junsu.es",
               "text": "— pgvector retrieval over compliance evidence with page and character-offset provenance, and a batched LLM pipeline mapping controls to risks with human confirmation before scoring. On AWS (Bedrock, Lambda, S3, Cognito) with per-tenant Postgres row-level security; live with its first enterprise customer."
-            },
-            {
-              "lead": "TuDiaDeBlanco · All-in-one AI wedding platform · tudiadeblanco.com",
-              "text": "— full platform on Next.js, Supabase and Stripe (guests, seating, budgets, RSVP, public wedding pages), plus a visibility-scoped RAG chatbot and an agent that tool-calls live platform data."
             }
           ],
           "note": "Check blancabarrufet.me for more information."
